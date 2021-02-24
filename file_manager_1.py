@@ -11,7 +11,7 @@ def create_folder(name):
     try:
         os.mkdir(name)
     except FileExistsError:
-        print('Такая папка уже существует')
+        print('A folder with this name already exists')
 
 def get_list(folders_only = False):
     result = os.listdir()
@@ -30,14 +30,18 @@ def copy_file(name, new_name):
         try:
             shutil.copytree(name, new_name)
         except FileExistsError:
-            print('Такая папка уже существует')
+            print('A folder with this name already exists')
     else:
         shutil.copy(name, new_name)
-
+           
 def safe_info(data):
     current_time = datetime.datetime.now()
     with open('log.md', 'a', encoding = 'utf-8') as f:
         f.write(f'{current_time} - {data}\n')
+
+def change_dir(name):
+    os.chdir(name)
+    print(os.getcwd())
 
 
 
